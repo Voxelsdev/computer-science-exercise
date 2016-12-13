@@ -16,7 +16,12 @@ const FixedArray = require('./fixed_array');
 //     newFa.length === 4
 
 function arrayPush(array, item) {
-
+  const newArr = new FixedArray(array.length + 1);
+  for(let i = 0; i < array.length; i++) {
+    newArr.set(i, array.get(i));
+  }
+  newArr.set(newArr.length - 1, item);
+  return newArr;
 }
 
 // Write a function named arrayDelete which takes in the following as arguments:
@@ -33,8 +38,17 @@ function arrayPush(array, item) {
 //     fa.get(1) === 3
 //     newFa.length === 2
 
-function arrayDelete(array, index) {
+function arrayDelete(arr, index) {
+  const na = new FixedArray(arr.length - 1);
 
+  for (let i = 0; i < na.length; i++) {
+    if (i >= index) {
+      na.set(i, arr.get(i + 1));
+    } else {
+      na.set(i, arr.get(i));
+    }
+  }
+  return na;
 }
 
 module.exports = { arrayPush, arrayDelete }
