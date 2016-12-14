@@ -55,7 +55,7 @@ describe("#binarySearch", () => {
     expect(lib.binarySearch(['a','b','c'], 'b')).to.deep.equal(1)
     expect(lib.binarySearch(['a','b','c'], 'c')).to.deep.equal(2)
     expect(lib.binarySearch(['a','b','c'], '0')).to.deep.equal(-1)
-    // expect(lib.binarySearch(['a','b','c'], 'd')).to.deep.equal(-1)
+    expect(lib.binarySearch(['a','b','c'], 'd')).to.deep.equal(-1)
   })
 
   it("runs faster than linearSearch in the worst case", () => {

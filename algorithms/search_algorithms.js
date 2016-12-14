@@ -12,7 +12,7 @@ const linearSearch = function(array, value) {
 let binarySearch = function(arr, val) {
   if (arr.length) {
     let min = 0;
-    let max = arr.length;
+    let max = arr.length - 1;
     let mid = Math.floor((max + min) / 2);
 
     while (min <= max) {
