@@ -30,7 +30,10 @@ const LANG_LIST = {
 }
 
 const greet = (language) => {
+  language = language.toLowerCase();
+  const greeting = LANG_LIST[language] !== undefined ? LANG_LIST[language] : 'Welcome';
 
+  return `${greeting} to Miami.`;
 }
 
 
@@ -46,7 +49,13 @@ i.e. [1, 'z', 'bob', true, 42, 'bob'] => { '1': 0, 'z': 1, 'bob': '5', 'true': 3
 */
 
 const removeDupes = (numArr) => {
+  const hash = {};
 
+  for (let i = 0; i < numArr.length; i++) {
+    hash[numArr[i]] = i;
+  }
+
+  return hash;
 }
 
 
@@ -61,7 +70,16 @@ i.e. { 'foo': 6, 'bar': 3, 'baz': 'bob', 13: 13 } => { 'bar': 3, '13': 13 }
 */
 
 const onlyOdds = (mixedHash) => {
+  const keys = Object.keys(mixedHash);
+  const odds = {};
 
+  for (key in keys) {
+    if (mixedHash[key] % 2) {
+      odds[key] = mixedHash[key];
+    }
+  }
+  
+  return odds;
 };
 
 /*
