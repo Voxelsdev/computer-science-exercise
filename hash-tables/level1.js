@@ -70,15 +70,14 @@ i.e. { 'foo': 6, 'bar': 3, 'baz': 'bob', 13: 13 } => { 'bar': 3, '13': 13 }
 */
 
 const onlyOdds = (mixedHash) => {
-  const keys = Object.keys(mixedHash);
   const odds = {};
 
-  for (key in keys) {
+  for (let key of Object.keys(mixedHash)) {
     if (mixedHash[key] % 2) {
       odds[key] = mixedHash[key];
     }
   }
-  
+
   return odds;
 };
 
@@ -93,7 +92,16 @@ i.e. "hello" => { h: 1, e: 1, l: 2, o: 1 }
 */
 
 const charCount = (word) => {
-
+  word = word.toLowerCase();
+  const arr = word.split('');
+  return arr.reduce((obj, e, i, array) => {
+    if (Object.keys(obj).indexOf(e) === -1) {
+      obj[e] = 1;
+    } else {
+      obj[e]++;
+    }
+    return obj;
+  }, {});
 };
 
 module.exports = { greet, removeDupes, onlyOdds, charCount };

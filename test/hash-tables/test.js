@@ -51,19 +51,19 @@ describe('Hash Table', () => {
     });
 
     suite('#charCount', () => {
-      xit('should return an empty object if given an empty string', () => {
+      it('should return an empty object if given an empty string', () => {
         level1.charCount('').should.eql({});
       });
 
-      xit('should return an {} with keys for each char in a word with no dupe chars, and values for their count', () => {
+      it('should return an {} with keys for each char in a word with no dupe chars, and values for their count', () => {
         level1.charCount('red').should.eql({r: 1, e: 1, d: 1});
       });
 
-      xit('should return an {} with keys for each char in a word with dupe chars, and values for their count', () => {
+      it('should return an {} with keys for each char in a word with dupe chars, and values for their count', () => {
         level1.charCount('wallless').should.eql({w: 1, a: 1, l: 3, e: 1, s: 2});
       });
 
-      xit('should not care about case', () => {
+      it('should not care about case', () => {
         level1.charCount('Bob').should.eql({b: 2, o: 1});
       });
     });
