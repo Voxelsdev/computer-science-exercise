@@ -71,11 +71,11 @@ describe('Hash Table', () => {
 
   describe('Level Two', () => {
     suite('#reverseMerge', () => {
-      xit('should return an empty array if both input arrays are empty', () => {
+      it('should return an empty array if both input arrays are empty', () => {
         level2.reverseMerge([], []).should.eql({});
       });
 
-      xit('should be able to merge if both inputs have only a single value', () => {
+      it('should be able to merge if both inputs have only a single value', () => {
         level2.reverseMerge(['one'], [1]).should.eql({'one': 1});
       });
 
