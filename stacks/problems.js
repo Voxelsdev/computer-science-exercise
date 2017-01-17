@@ -16,7 +16,33 @@ const Stack = require('./stack');
 //   checkParens('(adfa(dvb)') -> false
 
 function checkParens(str) {
+  if (!(braces.length % 2) && braces.length) {
+    const openBraces = '[{(';
+    const closeBraces = ']})';
+    let openStr = "";
 
+    for (let i = 0; i < str.length; i++) {
+      const brace = str[i];
+
+      if (openBraces.indexOf(brace) >= 0) {
+        Stack.push(brace);
+
+      } else if (closeBraces.indexOf(brace) >= 0) {
+        if (openBraces.indexOf(openStr[openStr.length - 1]) === closeBraces.indexOf(brace)) {
+          openStr = openStr.slice(0, -1);
+
+        } else {
+          return false;
+        }
+
+      } else {
+        return false;
+      }
+
+    }
+    return openStr.length < 1 ? true : false;
+  }
+  return false;
 }
 
 // Write a function named validate that takes in a string of text

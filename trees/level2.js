@@ -14,7 +14,12 @@
 //     / \
 //    *   7
 function toArray(tree) {
+  if (tree === null) {
+    return [];
+  }
 
+  const value = [ tree.value ];
+  return toArray(tree.left).concat(value).concat(toArray(tree.right));
 }
 
 // Write a function named findValueInTree that takes in the following:
@@ -27,7 +32,13 @@ function toArray(tree) {
 //   /|\       with value 1, produces true
 //  2 4 7      with value 3, produces false
 function findValueInTree(tree, value) {
+  if (!tree.children || !tree) {
+    return false;
+  }
 
+  return tree.children.reduce((isIn, child) => {
+    return child.value === value || isIn ? true : findValueInTree(value);
+  }, false);
 }
 
 // Write a function named findValueInBinTree that takes in the following:
@@ -40,7 +51,13 @@ function findValueInTree(tree, value) {
 //   / \       with value 1, produces true
 //  1   7      with value 3, produces false
 function findValueInBinTree(tree, value) {
+  if (tree === null) {
+    return false;
+  }
 
+  return tree.value === value ||
+          findValueInBinTree(tree.left, value) ||
+          findValueInBinTree(tree.right, value);
 }
 
 // Write a function named findValueInBinSearchTree that takes in the following:
@@ -55,7 +72,14 @@ function findValueInBinTree(tree, value) {
 //   / \       with value 1, produces true
 //  1   7      with value 3, produces false
 function findValueInBinSearchTree(tree, value) {
+  if (tree === null) {
+    return false;
+  }
 
+  return tree.value === value || (value < tree.value) ?
+    findValueInBinTree(tree.left, value) :
+    findValueInBinTree(tree.right, value);
+    return false;
 }
 
 // Write a function named insertInBinSearchTree that takes in the following:
