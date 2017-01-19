@@ -55,9 +55,7 @@ function findValueInBinTree(tree, value) {
     return false;
   }
 
-  return tree.value === value ||
-          findValueInBinTree(tree.left, value) ||
-          findValueInBinTree(tree.right, value);
+  return tree.value === value || findValueInBinTree(tree.left, value) || findValueInBinTree(tree.right, value);
 }
 
 // Write a function named findValueInBinSearchTree that takes in the following:
@@ -79,7 +77,6 @@ function findValueInBinSearchTree(tree, value) {
   return tree.value === value || (value < tree.value) ?
     findValueInBinTree(tree.left, value) :
     findValueInBinTree(tree.right, value);
-    return false;
 }
 
 // Write a function named insertInBinSearchTree that takes in the following:

@@ -87,7 +87,7 @@ function mergeSort(arr) {
   let left = mergeSort(arr.slice(0, mid));
   let right = mergeSort(arr.slice(mid));
 
-  return (merge(left, right));
+  return merge(left, right);
 }
 
 /* 1. If left is less than right, declare a variable called partitionIndex which is equal

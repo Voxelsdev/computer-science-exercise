@@ -19,23 +19,23 @@ output => {a: 3, b: 2, c: 1}
 
 const reverseMerge = (keyArr, valArr) => {
   const res = {};
-  const arrDiff = keyArr.length - valArr.length;
+  let length  = keyArr.length > valArr.length ? keyArr.length : valArr.length;
+  let newLength = length;
 
-  if (arrDiff <= 0) {
-    for (let i = 0 ; i < arrDiff * -1; i++) {
-      res[keyArr[i]] = valArr[arrDiff * -1];
+  for (let i = 0; i < length; i++) {
+    if (i >= keyArr.length) {
+      let lastKeyVal = [];
+
+      for (let j = keyArr.length - 1; j >= 0; j--) {
+        lastKeyVal.push(valArr[j]);
+      }
+
+      res['foo'] = lastKeyVal;
+      return res;
     }
+    res[keyArr[i]] = valArr[newLength - 1] || 42;
+    newLength--;
   }
-
-  for (let i = 0; i < keyArr.length; i++) {
-    res[keyArr[i + arrDiff]] = valArr[valArr.length - (i + 1)];
-
-    if (i === keyArr.length - 1 && arrDiff < 0) {
-      res['foo'] = valArr.slice(0, i + 1).reverse();
-    }
-  }
-
-  console.log(res);
   return res;
 }
 
@@ -54,16 +54,22 @@ const mostUsedWord = (sentence) => {
   const counts = {};
 
   for (let word of words) {
-    counts[word] = !counts[word] ? 1 : counts[word]++;
+    counts[word] = counts[word] ? counts[word] + 1 : 1;
   }
 
-  const maxKey = Object.keys(counts).reduce((max, key) => {
-    return counts[key] > counts[max] ? key : max;
-  }, 'lol');
+  let mostUsed = '';
 
-  console.log(counts, maxKey);
+  let max = Object.keys(counts).reduce((max, key) => {
+    if (counts[key] > max) {
+      mostUsed = key;
+      return counts[key];
+    } else {
+      return max;
+    }
+  }, 0);
+
+  return { [mostUsed]: counts[mostUsed] };
 }
-
 
 /*
 
@@ -74,7 +80,10 @@ It returns TRUE if the words are anagrams of one another and FALSE if it is not.
 */
 
 const isAnagram = (test, original) => {
+  let sortedTest = test.split('').sort().join('');
+  let sortedOrig = original.split('').sort().join('');
 
+  return sortedTest === sortedOrig;
 }
 
 module.exports = { reverseMerge, mostUsedWord, isAnagram };
